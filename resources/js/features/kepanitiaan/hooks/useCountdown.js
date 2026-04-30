@@ -13,7 +13,7 @@ function calcTime(target) {
 }
 
 /**
- * Hook countdown ke tanggal tertentu.
+ * .
  * @param {string|null} targetDate - ISO date string
  * @returns {{ hari, jam, menit, detik, selesai }}
  */
@@ -22,7 +22,6 @@ export function useCountdown(targetDate) {
 
     useEffect(() => {
         if (!targetDate) return;
-        // recalc immediately when targetDate changes
         setTime(calcTime(targetDate));
 
         const interval = setInterval(() => {

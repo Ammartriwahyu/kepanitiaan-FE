@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/shared/components/shadcdn/button";
+import { ImageOff } from "lucide-react";
 
 function formatTanggal(dateStr) {
     if (!dateStr) return "";
@@ -11,28 +12,30 @@ function formatTanggal(dateStr) {
 }
 
 export default function KegiatanCard({ kegiatan, index = 0, onLihat }) {
+    const hasImage = !!kegiatan.gambar;
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
-            className="rounded-2xl shadow-lg overflow-hidden flex flex-col bg-white cursor-pointer"
-            style={{ border: "none" }}
+            className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
         >
-            <div className="relative overflow-hidden">
-                {kegiatan.gambar ? (
+            <div className="relative overflow-hidden bg-white">
+                {hasImage ? (
                     <img
                         src={kegiatan.gambar}
                         alt={kegiatan.nama}
                         className="w-full h-52 object-cover transition-transform duration-500 hover:scale-105"
                     />
                 ) : (
-                    <div
-                        className="w-full h-52 flex items-center justify-center text-white/50 text-sm font-medium"
-                        style={{ background: "linear-gradient(135deg, #499496 0%, #026D78 100%)" }}
-                    >
-                        {kegiatan.nama}
+
+                    <div className="w-full h-52 bg-gray-100 flex flex-col items-center justify-center gap-2">
+                        <ImageOff className="size-8 text-gray-300" />
+                        <span className="text-gray-300 text-xs font-medium text-center px-4">
+                            {kegiatan.nama}
+                        </span>
                     </div>
                 )}
 
@@ -47,7 +50,7 @@ export default function KegiatanCard({ kegiatan, index = 0, onLihat }) {
             </div>
 
             <div className="bg-white px-5 pt-4 pb-5 flex flex-col flex-1 gap-3">
-                <h3 className="font-bold text-green-4 text-base leading-snug line-clamp-2">
+                <h3 className="font-bold text-black-1 text-base leading-snug line-clamp-2">
                     {kegiatan.nama}
                 </h3>
                 <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 flex-1 text-justify">

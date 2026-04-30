@@ -3,7 +3,6 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 import { useDaftar } from "@/features/kepanitiaan/hooks/useDaftar";
 import kelopakDaun from "@/assets/icons/kepanitiaan/kelopakDaun.webp";
 
-/** Label + children */
 function Field({ label, children }) {
     return (
         <div className="space-y-1.5">
@@ -23,11 +22,6 @@ const selectCls =
     "focus:outline-none focus:ring-2 focus:ring-white/40 focus:bg-white/20 " +
     "disabled:opacity-50 transition-colors";
 
-/**
- * Halaman form pendaftaran kepanitiaan.
- * Layout sesuai desain: kelopakDaun di 4 sudut section, form card teal di tengah.
- * Section tidak full-screen → footer tetap terlihat di bawah.
- */
 export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess }) {
     const { form, update, submit, loading, error } = useDaftar(mahasiswa);
     const divisis = kegiatan?.divisis ?? [];
@@ -43,58 +37,52 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
             className="w-full py-24 px-4"
             style={{ background: "var(--color-white-green)" }}
         >
-            {/* ── Outer container dengan kelopak di 4 sudut ── */}
             <div className="relative mx-auto max-w-3xl py-16 px-6">
 
-                {/* Kelopak KIRI-ATAS */}
                 <motion.img
                     src={kelopakDaun}
                     alt="" aria-hidden="true"
-                    className="absolute pointer-events-none select-none"
-                    style={{ width: 140, height: 165, top: -10, left: 10,
-                        borderRadius: "36%", transform: "rotate(-12deg) scaleX(-1)", zIndex: 0 }}
+                    className="hidden md:block absolute pointer-events-none select-none"
+                    style={{ width: 140, height: 165, top: 30, left: -30,
+                          scaleX: -1, zIndex: 0 }}
                     initial={{ opacity: 0, x: -20, y: -20 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 />
 
-                {/* Kelopak KANAN-ATAS */}
                 <motion.img
                     src={kelopakDaun}
                     alt="" aria-hidden="true"
-                    className="absolute pointer-events-none select-none"
-                    style={{ width: 140, height: 165, top: -10, right: 10,
-                        borderRadius: "36%", transform: "rotate(12deg)", zIndex: 0 }}
+                    className="hidden md:block absolute pointer-events-none select-none"
+                    style={{ width: 140, height: 165, top: 30, right: -30,
+                         transform: "rotate(12deg)", zIndex: 0 }}
                     initial={{ opacity: 0, x: 20, y: -20 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
                 />
 
-                {/* Kelopak KIRI-BAWAH */}
                 <motion.img
                     src={kelopakDaun}
                     alt="" aria-hidden="true"
-                    className="absolute pointer-events-none select-none"
-                    style={{ width: 130, height: 155, bottom: -10, left: 10,
-                        borderRadius: "36%", transform: "rotate(14deg) scaleX(-1)", zIndex: 0 }}
+                    className="hidden md:block absolute pointer-events-none select-none"
+                    style={{ width: 130, height: 155, bottom: 30, left: -30,
+                         scaleX: -1, scaleY: -1, zIndex: 0 }}
                     initial={{ opacity: 0, x: -20, y: 20 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
                 />
 
-                {/* Kelopak KANAN-BAWAH */}
                 <motion.img
                     src={kelopakDaun}
                     alt="" aria-hidden="true"
-                    className="absolute pointer-events-none select-none"
-                    style={{ width: 130, height: 155, bottom: -10, right: 10,
-                        borderRadius: "36%", transform: "rotate(-14deg)", zIndex: 0 }}
+                    className="hidden md:block absolute pointer-events-none select-none"
+                    style={{ width: 130, height: 155, bottom: 30, right: -30,
+                         scaleY: -1, zIndex: 0 }}
                     initial={{ opacity: 0, x: 20, y: 20 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
                 />
 
-                {/* ── Form card teal ── */}
                 <motion.div
                     className="relative bg-green-2 rounded-2xl shadow-2xl px-8 py-10"
                     style={{ zIndex: 1 }}
@@ -102,12 +90,11 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    {/* Judul */}
+            
                     <h2 className="text-white font-bold text-xl uppercase tracking-widest text-center mb-8">
                         Form Pendaftaran
                     </h2>
 
-                    {/* Error */}
                     <AnimatePresence>
                         {error && (
                             <motion.div
@@ -122,7 +109,7 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                     </AnimatePresence>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
-                        {/* Nama Lengkap */}
+                    
                         <Field label="Nama Lengkap">
                             <input
                                 type="text"
@@ -134,7 +121,7 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                             />
                         </Field>
 
-                        {/* NIM + Prodi */}
+                      
                         <div className="grid grid-cols-2 gap-4">
                             <Field label="NIM">
                                 <input
@@ -158,7 +145,6 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                             </Field>
                         </div>
 
-                        {/* Pilihan 1 + Pilihan 2 */}
                         <div className="grid grid-cols-2 gap-4">
                             <Field label="Pilihan 1">
                                 <select
@@ -192,7 +178,6 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                             </Field>
                         </div>
 
-                        {/* WhatsApp */}
                         <Field label="WhatsApp">
                             <input
                                 type="tel"
@@ -204,7 +189,6 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                             />
                         </Field>
 
-                        {/* Link Drive */}
                         <Field label="Link Drive">
                             <input
                                 type="url"
@@ -216,7 +200,6 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                             />
                         </Field>
 
-                        {/* Tombol Kirim */}
                         <button
                             type="submit"
                             disabled={loading}
@@ -227,7 +210,6 @@ export default function FormPendaftaran({ kegiatan, mahasiswa, onBack, onSuccess
                         </button>
                     </form>
 
-                    {/* Tombol Kembali */}
                     <button
                         type="button"
                         onClick={onBack}

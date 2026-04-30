@@ -5,16 +5,9 @@ import { Loader2 } from "lucide-react";
 import GuestLayout from "@/shared/layouts/GuestLayout";
 import PengumumanSection from "@/features/kepanitiaan/components/PengumumanSection";
 
-/**
- * Halaman pengumuman kelulusan kepanitiaan.
- * Mengambil data pendaftaran user dari API lalu menampilkan status (diterima/ditolak).
- *
- * Data kepanitiaan diambil SSR via Inertia.
- * Data mahasiswa diambil dari sessionStorage.
- */
 export default function Pengumuman({ kepanitiaan }) {
     const [pendaftaran, setPendaftaran] = useState(null);
-    const [loading,     setLoading]     = useState(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const stored = sessionStorage.getItem("kepanitiaan_mahasiswa");
@@ -26,14 +19,15 @@ export default function Pengumuman({ kepanitiaan }) {
 
         const mhs = JSON.parse(stored);
         fetchStatus(mhs.nim);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [kepanitiaan.id]);
 
     const fetchStatus = async (nim) => {
         try {
             const res = await axios.get(`/api/v1/daftar-kepanitiaan/${kepanitiaan.id}`);
             const pendaftar = res.data?.data?.pendaftar ?? [];
-            const userRecord = pendaftar.find((p) => p.nim === nim) ?? null;
+            const userRecord = pendaftar.find(
+                (p) => String(p.nim).trim() === String(nim).trim()
+            ) ?? null;
             setPendaftaran(userRecord);
         } catch {
             setPendaftaran(null);

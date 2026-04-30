@@ -1,20 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import FadeUp from "@/shared/animations/FadeUp";
+import kelopakDaun from "@/assets/icons/kepanitiaan/kelopakDaun.webp";
 
-/**
- * Section halaman pengumuman kelulusan.
- * Menampilkan tampilan diterima (hijau) atau ditolak (merah) berdasarkan status_kelulusan.
- *
- * Props:
- *   kegiatan    - object Kepanitiaan { nama, link_grup_whatsapp }
- *   pendaftaran - object DaftarKepanitiaan { status_kelulusan: 'lulus'|'tidak_lulus'|null }
- */
 export default function PengumumanSection({ kegiatan, pendaftaran }) {
-    const status    = pendaftaran?.status_kelulusan;
-    const linkGrup  = kegiatan?.link_grup_whatsapp || "#";
+    const status = pendaftaran?.status_kelulusan;
+    const linkGrup = kegiatan?.link_grup_whatsapp || "#";
 
-    /* ---- Belum ada data pendaftaran ---- */
     if (!pendaftaran) {
         return (
             <EmptyState
@@ -24,7 +16,6 @@ export default function PengumumanSection({ kegiatan, pendaftaran }) {
         );
     }
 
-    /* ---- Status belum ditentukan admin ---- */
     if (status === null || status === undefined) {
         return (
             <EmptyState
@@ -38,62 +29,63 @@ export default function PengumumanSection({ kegiatan, pendaftaran }) {
 
     return (
         <section
-            className="min-h-screen py-20 px-4 relative overflow-hidden"
+            className="py-20 px-4 relative overflow-hidden"
             style={{ backgroundColor: "#F2F2F2" }}
         >
-            {/* Blob dekorasi top-right */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 0.65, scale: 1 }}
-                transition={{ duration: 0.9 }}
-                className="absolute top-0 right-0 w-64 h-64 rounded-3xl pointer-events-none"
+            <motion.img
+                src={kelopakDaun}
+                alt="" aria-hidden="true"
+                className="hidden md:block absolute pointer-events-none select-none"
                 style={{
-                    background: "linear-gradient(225deg, #9ab34c, #7ab2b2)",
-                    transform: "translate(32%, -32%) rotate(-14deg)",
+                    width: 200, height: 230,
+                    top: 0, right: 0,
+                    zIndex: 0,
+                    transformOrigin: "top right",
                 }}
-            />
-            {/* Blob dekorasi bottom-left */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 0.5, scale: 1 }}
-                transition={{ duration: 0.9, delay: 0.1 }}
-                className="absolute bottom-0 left-0 w-56 h-56 rounded-3xl pointer-events-none"
-                style={{
-                    background: "linear-gradient(45deg, #9cd5ff, #9ab34c)",
-                    transform: "translate(-32%, 32%) rotate(18deg)",
-                }}
+                initial={{ opacity: 0, x: 30, y: -20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
             />
 
-            <div className="relative mx-auto max-w-3xl">
+            <motion.img
+                src={kelopakDaun}
+                alt="" aria-hidden="true"
+                className="hidden md:block absolute pointer-events-none select-none"
+                style={{
+                    width: 180, height: 210,
+                    bottom: 0, left: 0,
+                    scaleY: -1,
+                    scaleX: -1,
+                    zIndex: 0,
+                    transformOrigin: "bottom left",
+                }}
+                initial={{ opacity: 0, x: -30, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: 0.08 }}
+            />
+
+            <div className="relative mx-auto max-w-3xl" style={{ zIndex: 1 }}>
                 <FadeUp delay={0}>
-                    {/* Kartu utama */}
                     <div
-                        className="rounded-3xl p-8 md:p-12 shadow-2xl"
-                        style={{
-                            background: diterima
-                                ? "#9ab34c"          /* olive-green untuk diterima */
-                                : "#a83232",         /* merah-bata untuk ditolak  */
-                        }}
+                        className="rounded-3xl px-8 pt-10 pb-10 md:px-14 md:pt-12 md:pb-12 shadow-2xl"
+                        style={{ background: diterima ? "#9ab34c" : "#a83232" }}
                     >
-                        <h1 className="text-white-1 font-bold text-2xl uppercase tracking-widest text-center mb-8">
+                        <h1 className="text-white font-bold text-2xl uppercase tracking-widest text-center mb-8">
                             Pengumuman
                         </h1>
 
-                        {/* Kartu putih dalam */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.25, duration: 0.5 }}
-                            className="bg-white-1 rounded-2xl p-6 md:p-8 shadow-md"
+                            className="bg-white rounded-2xl p-6 md:p-8 shadow-md"
                         >
                             {diterima ? (
-                                /* === DITERIMA === */
+
                                 <>
                                     <h2 className="text-lg md:text-xl font-bold mb-4 leading-snug">
-                                        <span className="text-green-3">Selamat </span>
-                                        <span className="text-green-4">
-                                            Datang di KBMDSI 2026!
-                                        </span>
+                                        <span style={{ color: "#9ab34c" }}>Selamat </span>
+                                        <span className="text-green-4">Datang di KBMDSI 2026!</span>
                                     </h2>
                                     <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
                                         Selamat! Kamu dinyatakan telah berhasil melewati seluruh
@@ -106,7 +98,8 @@ export default function PengumumanSection({ kegiatan, pendaftaran }) {
                                             href={linkGrup}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 bg-green-2 hover:bg-green-4 text-white-1 font-semibold px-6 py-3 rounded-lg transition-colors text-sm shadow"
+                                            className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-lg transition-colors text-sm shadow text-white"
+                                            style={{ backgroundColor: "#026D78" }}
                                         >
                                             Gabung Grup
                                             <ArrowRight className="size-4" />
@@ -114,9 +107,9 @@ export default function PengumumanSection({ kegiatan, pendaftaran }) {
                                     </div>
                                 </>
                             ) : (
-                                /* === DITOLAK === */
+
                                 <>
-                                    <h2 className="text-lg md:text-xl font-bold text-green-4 mb-4 leading-snug">
+                                    <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-4 leading-snug">
                                         Tetap Semangat, Perjalanan Masih Panjang!
                                     </h2>
                                     <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-3">
@@ -140,7 +133,6 @@ export default function PengumumanSection({ kegiatan, pendaftaran }) {
     );
 }
 
-/** Komponen fallback ketika data tidak ada atau pengumuman belum tersedia */
 function EmptyState({ title, message }) {
     return (
         <section

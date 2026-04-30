@@ -1,15 +1,6 @@
 import { motion } from "framer-motion";
 import FadeUp from "@/shared/animations/FadeUp";
 
-/**
- * Hero section halaman detail kegiatan.
- * Background: #F2F2F2 (white-1) sesuai desain.
- *
- * Kondisi tombol:
- *   - sudahDaftar = false                        → "Daftar Sekarang" (aktif hijau)
- *   - sudahDaftar = true && !pengumumanSudahTiba → "Daftar Sekarang" (disabled abu)
- *   - pengumumanSudahTiba = true                 → "Pengumuman" (aktif hijau)
- */
 export default function KegiatanHero({
     kegiatan,
     sudahDaftar,
@@ -31,9 +22,15 @@ export default function KegiatanHero({
                 {/* ---- Gambar dengan efek cahaya terang ---- */}
                 <FadeUp delay={0} className="w-full md:w-2/5 shrink-0">
                     <motion.div
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ 
+                            scale: 1.02,
+                            boxShadow: "0 20px 60px rgba(2, 109, 120, 0.5), 0 0 30px rgba(154, 179, 76, 0.3)",
+                        }}
                         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                        className="overflow-hidden rounded-2xl shadow-xl relative"
+                        className="overflow-hidden rounded-2xl relative"
+                        style={{ 
+                            boxShadow: "0 15px 45px rgba(2, 109, 120, 0.35), 0 0 20px rgba(154, 179, 76, 0.2)",
+                        }}
                     >
                         {kegiatan.gambar ? (
                             <>
@@ -64,16 +61,15 @@ export default function KegiatanHero({
                     </motion.div>
                 </FadeUp>
 
-                {/* ---- Info ---- */}
                 <div className="flex-1 flex flex-col gap-5">
                     <FadeUp delay={1}>
-                        <h1 className="text-2xl md:text-3xl font-bold text-green-4 leading-snug">
+                        <h1 className="text-2xl md:text-3xl font-bold text-black-1 leading-snug">
                             {kegiatan.nama}
                         </h1>
                     </FadeUp>
 
                     <FadeUp delay={2}>
-                        <div className="text-sm md:text-base text-gray-700 leading-relaxed space-y-3">
+                        <div className="text-sm md:text-base text-black-1 leading-relaxed space-y-3">
                             {kegiatan.deskripsi ? (
                                 <p>{kegiatan.deskripsi}</p>
                             ) : (

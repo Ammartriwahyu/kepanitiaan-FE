@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
 
-/**
- * Dekorasi sudut berupa rounded rectangle ber-gradasi,
- * muncul di keempat pojok container (overflow-hidden required on parent).
- */
 const BLOBS = [
     {
         pos: { top: -56, left: -56 },

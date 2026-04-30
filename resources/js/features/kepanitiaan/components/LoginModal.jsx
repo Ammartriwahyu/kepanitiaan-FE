@@ -31,16 +31,13 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                 >
-                    {/* Backdrop */}
                     <motion.div
                         className="absolute inset-0 bg-black/35 backdrop-blur-md"
                         onClick={onClose}
                     />
 
-                    {/* ── Wrapper untuk posisi kelopak relatif terhadap form ── */}
                     <div className="relative z-10 w-full max-w-xl">
 
-                        {/* Kelopak KIRI-ATAS */}
                         <motion.img
                             src={kelopakDaun}
                             alt=""
@@ -61,7 +58,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                             transition={{ duration: 0.55, ease: "easeOut" }}
                         />
 
-                        {/* Kelopak KANAN-ATAS */}
                         <motion.img
                             src={kelopakDaun}
                             alt=""
@@ -81,7 +77,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                             transition={{ duration: 0.55, ease: "easeOut", delay: 0.06 }}
                         />
 
-                        {/* ── Form card (di atas kelopak) ── */}
                         <motion.div
                             className="relative bg-green-2 rounded-2xl shadow-2xl px-10 py-10"
                             style={{ zIndex: 1 }}
@@ -91,7 +86,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Tombol tutup */}
                             <button
                                 type="button" onClick={onClose}
                                 className="absolute top-4 right-4 p-1 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
@@ -100,12 +94,10 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                                 <X className="size-4" />
                             </button>
 
-                            {/* Judul */}
                             <h2 className="text-white font-bold text-xl uppercase tracking-widest text-center mb-8">
                                 Form Masuk
                             </h2>
 
-                            {/* Error */}
                             <AnimatePresence>
                                 {error && (
                                     <motion.div
@@ -120,7 +112,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                             </AnimatePresence>
 
                             <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* NIM / Email */}
                                 <div className="space-y-2">
                                     <label className="block text-white/80 text-sm font-medium">
                                         NIM/Email
@@ -135,7 +126,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                                     />
                                 </div>
 
-                                {/* Kata Sandi */}
                                 <div className="space-y-2">
                                     <label className="block text-white/80 text-sm font-medium">
                                         Kata Sandi
@@ -150,7 +140,6 @@ export default function LoginModal({ open, onClose, kepanitiaanId, onSuccess }) 
                                     />
                                 </div>
 
-                                {/* Tombol Kirim — bg light gray/white sesuai desain */}
                                 <button
                                     type="submit"
                                     disabled={loading}

@@ -1,16 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 
-/**
- * Hook pendaftaran kepanitiaan.
- * Setelah berhasil mendaftar, simpan flag ke sessionStorage
- * agar Detail.jsx bisa langsung menampilkan state "sudah daftar"
- * tanpa menunggu API (mengatasi race condition / format NIM mismatch).
- */
 export function useDaftar(mahasiswa) {
     const [form, setForm] = useState({
-        nama:                   mahasiswa?.full_name    ?? "",
-        nim:                    mahasiswa?.nim          ?? "",
+        nama:                   mahasiswa?.full_name     ?? "",
+        nim:                    mahasiswa?.nim           ?? "",
         prodi:                  mahasiswa?.study_program ?? "",
         whatsapp:               "",
         link:                   "",
@@ -25,10 +19,6 @@ export function useDaftar(mahasiswa) {
         if (error) setError(null);
     };
 
-    /**
-     * @param {number|string} kepanitiaanId
-     * @returns {boolean} true jika berhasil
-     */
     const submit = async (kepanitiaanId) => {
         setLoading(true);
         setError(null);
@@ -39,12 +29,7 @@ export function useDaftar(mahasiswa) {
                 kepanitiaan_id: kepanitiaanId,
             });
 
-            // Simpan flag ke sessionStorage agar Detail.jsx tahu user sudah daftar
-            // Key: kepanitiaan_daftar_{id}, Value: NIM user
-            sessionStorage.setItem(
-                `kepanitiaan_daftar_${kepanitiaanId}`,
-                String(form.nim).trim(),
-            );
+            sessionStorage.setItem(`kepanitiaan_sudah_daftar_${kepanitiaanId}`, "1");
 
             return true;
         } catch (err) {

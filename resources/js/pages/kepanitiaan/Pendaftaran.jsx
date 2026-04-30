@@ -4,13 +4,6 @@ import { Loader2 } from "lucide-react";
 import GuestLayout from "@/shared/layouts/GuestLayout";
 import FormPendaftaran from "@/features/kepanitiaan/components/FormPendaftaran";
 
-/**
- * Halaman form pendaftaran kepanitiaan.
- * Data kepanitiaan (+ divisis) diambil SSR via Inertia.
- * Data mahasiswa diambil dari sessionStorage.
- *
- * Setelah berhasil mendaftar → redirect ke halaman detail (kondisi sudah daftar).
- */
 export default function Pendaftaran({ kepanitiaan }) {
     const [mahasiswa, setMahasiswa] = useState(null);
     const [ready,     setReady]     = useState(false);
@@ -30,7 +23,6 @@ export default function Pendaftaran({ kepanitiaan }) {
     const handleBack    = () => router.visit(`/kegiatan/${kepanitiaan.id}`);
     const handleSuccess = () => router.visit(`/kegiatan/${kepanitiaan.id}`);
 
-    // Tunggu data mahasiswa dari sessionStorage
     if (!ready) {
         return (
             <GuestLayout>

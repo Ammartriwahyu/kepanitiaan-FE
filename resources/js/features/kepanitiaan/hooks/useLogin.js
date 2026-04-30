@@ -3,18 +3,6 @@ import axios from "axios";
 
 const EMPTY = { nim: "", password: "" };
 
-/**
- * Hook login UB SSO.
- *
- * CATATAN BUG BACKEND:
- *   DaftarKepanitiaanController::pendaftaranKepanitiaan() tidak mengecek
- *   apakah hasil UbauthService::auth() mengandung ['error' => true].
- *   Akibatnya backend selalu return HTTP 200 meskipun login gagal,
- *   dengan mahasiswa = { error: true, message: "..." }.
- *
- *   Solusi frontend: cek mahasiswa.error === true secara eksplisit,
- *   karena kita tidak bisa mengandalkan HTTP status code dari backend.
- */
 export function useLogin() {
     const [form, setForm]       = useState(EMPTY);
     const [loading, setLoading] = useState(false);
@@ -42,9 +30,6 @@ export function useLogin() {
 
             const mahasiswa = res.data?.data?.mahasiswa;
 
-            // Cek error dari backend — karena backend return HTTP 200
-            // bahkan saat UB SSO gagal (password salah, akun tidak valid, dll).
-            // UbauthService::auth() return { error: true, message: "..." } saat gagal.
             if (!mahasiswa || mahasiswa.error === true) {
                 setError(
                     mahasiswa?.message ||
@@ -56,7 +41,6 @@ export function useLogin() {
             return mahasiswa;
 
         } catch (err) {
-            // Untuk error HTTP lainnya (401, 422, dll)
             const msg =
                 err.response?.data?.message ||
                 "Login gagal. Pastikan NIM dan kata sandi UB kamu benar.";
