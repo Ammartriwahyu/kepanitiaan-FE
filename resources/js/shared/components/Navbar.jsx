@@ -61,7 +61,7 @@ export default function Navbar() {
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuLink href="/aspiration" className={navLinkCls(scrolled)}>Aspirasi</NavigationMenuLink>
-                            <NavigationMenuLink href="/activity" className={navLinkCls(scrolled)}>Kegiatan</NavigationMenuLink>
+                            <NavigationMenuLink href="/kegiatan" className={navLinkCls(scrolled)}>Kegiatan</NavigationMenuLink>
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger className={cn("bg-transparent hover:bg-black/10 text-sm md:text-base text-white font-medium", scrolled && "text-black/70")}>
                                     Profil
@@ -100,7 +100,7 @@ export default function Navbar() {
 
             <MobileMenu open={open}>
                 <a href="/aspiration" onClick={() => setOpen(false)} className={mLinkCls}>Aspirasi</a>
-                <a href="/activity" onClick={() => setOpen(false)} className={mLinkCls}>Kegiatan</a>
+                <a href="/kegiatan" onClick={() => setOpen(false)} className={mLinkCls}>Kegiatan</a>
                 <a href="/about" onClick={() => setOpen(false)} className={mLinkCls2}>Tentang Kami</a>
                 <p className="px-3 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-1">
                     <LayoutGrid className="size-3" /> Departemen
