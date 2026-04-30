@@ -1,0 +1,92 @@
+export const dummyRegistrants = [
+    {
+        id: 1,
+        nama: "Ahmad Reza Pratama",
+        nim: "235030400001",
+        prodi: "Sistem Informasi",
+        whatsapp: "081234567890",
+        link: "https://drive.google.com/file/d/1BxKzV9pQmR8sT7uV2wX3yZ4aB5cD6eF7/view",
+        kepanitiaan_id: 1,
+        created_at: "2026-04-10T09:15:00",
+        divisiSatu: {
+            id: 1,
+            nama_divisi: "Acara",
+        },
+        divisiDua: {
+            id: 2,
+            nama_divisi: "Publikasi",
+        },
+    },
+    {
+        id: 2,
+        nama: "Siti Nurhaliza",
+        nim: "235030400002",
+        prodi: "Sistem Informasi",
+        whatsapp: "082345678901",
+        link: "https://drive.google.com/file/d/g2c3lD7eQ9oR0sT1uV2wX3yZ/view",
+        kepanitiaan_id: 1,
+        created_at: "2026-04-11T10:30:00",
+        divisiSatu: {
+            id: 3,
+            nama_divisi: "Sponsorship",
+        },
+        divisiDua: {
+            id: 1,
+            nama_divisi: "Acara",
+        },
+    },
+    {
+        id: 3,
+        nama: "Budi Santoso",
+        nim: "235030400003",
+        prodi: "Teknologi Informasi",
+        whatsapp: "083456789012",
+        link: "https://drive.google.com/file/d/h3d4mE8fR0sT1uV2wX3yZ4a/view",
+        kepanitiaan_id: 1,
+        created_at: "2026-04-12T14:45:00",
+        divisiSatu: {
+            id: 2,
+            nama_divisi: "Publikasi",
+        },
+        divisiDua: {
+            id: 4,
+            nama_divisi: "Perlengkapan",
+        },
+    },
+    {
+        id: 4,
+        nama: "Rina Wijaya",
+        nim: "235030400004",
+        prodi: "Pendidikan Teknologi Informasi",
+        whatsapp: "084567890123",
+        link: "https://drive.google.com/file/d/i4e5nF9gS1uV2wX3yZ4aB5c/view",
+        kepanitiaan_id: 1,
+        created_at: "2026-04-13T11:20:00",
+        divisiSatu: {
+            id: 4,
+            nama_divisi: "Perlengkapan",
+        },
+        divisiDua: {
+            id: 3,
+            nama_divisi: "Sponsorship",
+        },
+    },
+    {
+        id: 5,
+        nama: "Doni Hermawan",
+        nim: "235030400005",
+        prodi: "Teknologi Informasi",
+        whatsapp: "085678901234",
+        link: "https://drive.google.com/file/d/j5f6oG0hT2vW3xY4zZ5a/view",
+        kepanitiaan_id: 1,
+        created_at: "2026-04-14T15:00:00",
+        divisiSatu: {
+            id: 1,
+            nama_divisi: "Acara",
+        },
+        divisiDua: {
+            id: 4,
+            nama_divisi: "Perlengkapan",
+        },
+    },
+];
